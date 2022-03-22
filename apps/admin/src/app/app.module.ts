@@ -19,6 +19,8 @@ import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ColorPickerModule} from 'primeng/colorpicker';
+
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -46,7 +48,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,    
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
-    CardModule,ToolbarModule,ButtonModule,TableModule,InputTextModule,ToastModule,ConfirmDialogModule,
+    CardModule,ToolbarModule,ButtonModule,TableModule,InputTextModule,ToastModule,ConfirmDialogModule,ColorPickerModule,
   ],
   providers: [CategoriesService,MessageService,ConfirmationService],
   bootstrap: [AppComponent],

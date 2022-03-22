@@ -11,20 +11,24 @@
         <div class="p-grid">
             <div class="p-col-12">
               <form [formGroup]="form">
-                <div class="p-fluid p-formgrid p-grid">
-                    <div class="p-field p-col">
-                      <label for="name">Name</label>
+                <div class="p-fluid p-formgrid grid">
+                    <div class="p-field col-4">
+                      <label for="name" class="mb-2">Name</label>
                       <input formControlName="name" id="name" type="text" pInputText />
                       <small *ngIf="categoryData.name.invalid && categoryData.name.touched" class="p-error"
                         >Name is required</small
                       >
                     </div>
-                    <div class="p-field p-col">
-                      <label for="icon">Icon</label>
+                    <div class="p-field col-4">
+                      <label for="icon" class="mb-2">Icon</label>
                       <input formControlName="icon" id="icon" type="text" pInputText />
-                      <small *ngIf="categoryData.icon.invalid && categoryData.name.touched" class="p-error"
+                      <small *ngIf="categoryData.icon.invalid && categoryData.icon.touched" class="p-error"
                         >Icon is required</small
                       >
+                    </div> 
+                    <div class="p-field col-4">
+                      <label for="icon" class="mb-2">Color</label>     <br>                 
+                      <p-colorPicker formControlName="color"></p-colorPicker>
                     </div>                   
                   </div>
               </form>
