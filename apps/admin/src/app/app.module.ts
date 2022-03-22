@@ -11,6 +11,11 @@ import { CategoriesListComponent } from './pages/categories/categories-list/cate
 import { HttpClientModule } from '@angular/common/http';
 import { CategoriesService } from '@bluebits/my-products';
 
+import {CardModule} from 'primeng/card';
+import {ToolbarModule} from 'primeng/toolbar';
+import {ButtonModule} from 'primeng/button';
+import {TableModule} from 'primeng/table';
+
 const routes: Routes = [
   {path:'', component: ShellComponent,
   children: [
@@ -27,6 +32,7 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
+    CardModule,ToolbarModule,ButtonModule,TableModule,
   ],
   providers: [CategoriesService],
   bootstrap: [AppComponent],
