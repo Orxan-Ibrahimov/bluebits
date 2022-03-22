@@ -18,9 +18,12 @@ import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
 import {ToastModule} from 'primeng/toast';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateCategoryComponent } from './pages/categories/create-category/create-category.component';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 
 const routes: Routes = [
@@ -43,9 +46,9 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,    
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
-    CardModule,ToolbarModule,ButtonModule,TableModule,InputTextModule,ToastModule,
+    CardModule,ToolbarModule,ButtonModule,TableModule,InputTextModule,ToastModule,ConfirmDialogModule,
   ],
-  providers: [CategoriesService,MessageService],
+  providers: [CategoriesService,MessageService,ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
