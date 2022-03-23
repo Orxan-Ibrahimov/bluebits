@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoriesService, Category } from '@bluebits/my-products';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -9,7 +10,13 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class CategoriesListComponent implements OnInit {
   categories: Category[] = [];
-  constructor(private categoryService: CategoriesService,private messageService:MessageService,private confirmationService:ConfirmationService) {}
+  editable = false;
+  constructor(
+    private categoryService: CategoriesService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
+    private router:Router
+  ) {}
 
   ngOnInit(): void {
     this.getCategories();
@@ -22,14 +29,22 @@ export class CategoriesListComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.categoryService.deleteCategory(categoryId).subscribe((res) => {
-          this.messageService.add({severity:'success', summary:'Success', detail:'Category was deleted!'});
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Category was deleted!',
+          });
           this.getCategories();
-        });     
-       }     
+        });
+      },
     });
   }
 
-  private getCategories(){
+  updateCategory(categoryId: string) {
+    this.router.navigateByUrl(`/categories/update/${categoryId}`);    
+  }
+
+  private getCategories() {
     this.categoryService.getCategories().subscribe((data) => {
       this.categories = data;
     });

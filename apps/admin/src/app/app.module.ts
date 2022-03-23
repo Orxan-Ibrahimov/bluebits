@@ -34,6 +34,7 @@ const routes: Routes = [
     {path:'dashboard', component: DashboardComponent},
     {path:'categories', component: CategoriesListComponent},
     {path:'categories/create-category', component: CreateCategoryComponent},
+    {path:'categories/update/:categoryId', component: CreateCategoryComponent},
   ]
 },
 

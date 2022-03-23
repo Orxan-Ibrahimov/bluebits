@@ -1,9 +1,9 @@
 <p-toast></p-toast>
 <div class="admin-page">
-    <p-card header="Categories" subheader="Add a category">
+    <p-card header="{{editable ? 'Update' : 'Create'}}" subheader="{{editable ? 'Edit the category' : 'Add a category'}}">
         <p-toolbar>
             <div class="p-toolbar-group-left">
-                <p-button (onClick)="onSubmit()" label="Add a new category" icon="pi pi-plus" styleClass="p-button-primary"></p-button>                   
+                <p-button (onClick)="onSubmit()" label="{{editable ? 'Update the category' : 'Add a new category'}}" icon="pi pi-plus" styleClass="p-button-primary"></p-button>                   
                 <p-button routerLink="/categories" label="Go Back" icon="pi pi-arrow-circle-left" styleClass="p-button-danger"></p-button>                   
             </div>
         </p-toolbar>
