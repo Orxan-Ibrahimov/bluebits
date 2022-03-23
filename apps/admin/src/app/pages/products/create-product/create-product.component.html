@@ -1,0 +1,146 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card
+    header="{{ editable ? 'Update' : 'Create' }}"
+    subheader="{{ editable ? 'Edit the product' : 'Add a product' }}"
+  >
+    <p-toolbar>
+      <div class="p-toolbar-group-left">
+        <p-button
+          (onClick)="onSubmit()"
+          label="{{ editable ? 'Update the product' : 'Add a new product' }}"
+          icon="pi pi-plus"
+          styleClass="p-button-primary"
+        ></p-button>
+        <p-button
+          routerLink="/products"
+          label="Go Back"
+          icon="pi pi-arrow-circle-left"
+          styleClass="p-button-danger"
+        ></p-button>
+      </div>
+    </p-toolbar>
+
+    <div class="p-grid">
+      <div class="p-col-12">
+        <form [formGroup]="form">
+          <div class="p-fluid p-formgrid grid">
+            <div class="p-field col-4">
+              <label for="name" class="mb-2">Name</label>
+              <input formControlName="name" id="name" type="text" pInputText />
+              <!-- <small *ngIf="categoryData.name.invalid && categoryData.name.touched" class="p-error"
+                        >Name is required</small
+                      > -->
+            </div>
+            <div class="p-field col-4">
+              <label for="countInStock" class="mb-2">Stock</label>
+              <p-inputNumber
+                formControlName="countInStock"
+                id="countInStock"
+                inputId="countInStock" 
+                [max]="100"
+                [showButtons]="true"
+                buttonLayout="horizontal"
+                spinnerMode="horizontal"
+                decrementButtonClass="p-button-danger"
+                incrementButtonClass="p-button-success"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+                mode="decimal"
+                [min]="0" 
+                pInputText
+              ></p-inputNumber>               
+            </div>
+
+            <div class="p-field col-4">
+              <label for="countInStock" class="mb-2">Featured</label>
+              <p-inputSwitch  formControlName="countInStock"
+              id="countInStock" pInputText></p-inputSwitch>              
+            </div>
+
+            <div class="p-field col-4">
+              <label for="icon" class="mb-2">Price</label>
+              <p-inputNumber
+                formControlName="price"
+                id="price"
+                inputId="price" 
+                [max]="100"
+                [showButtons]="true"
+                buttonLayout="horizontal"
+                spinnerMode="horizontal"
+                decrementButtonClass="p-button-danger"
+                incrementButtonClass="p-button-success"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+                mode="currency"
+                currency="USD"
+                [min]="0" 
+                pInputText
+              ></p-inputNumber>              
+            </div>
+            <div class="p-field col-4">
+              <label for="brand" class="mb-2">Brand</label>
+              <input
+                formControlName="brand"
+                id="brand"
+                type="text"
+                pInputText
+              />
+            </div>
+            <div class="p-field col-4">
+              <label for="rating" class="mb-2">Rating</label>
+              <p-inputNumber formControlName="rating" id="rating" pInputText inputId="rating" [showButtons]="true" mode="decimal" [min]="0">
+              </p-inputNumber>
+              
+            </div>
+            <div class="p-field col-4">
+              <label for="numReviews" class="mb-2">numReviews</label>
+              <p-inputNumber
+                formControlName="numReviews"
+                id="numReviews"
+                inputId="numReviews" 
+                [max]="100"
+                [showButtons]="true"
+                buttonLayout="horizontal"
+                spinnerMode="horizontal"
+                decrementButtonClass="p-button-danger"
+                incrementButtonClass="p-button-success"
+                incrementButtonIcon="pi pi-plus"
+                decrementButtonIcon="pi pi-minus"
+                mode="decimal"
+                [min]="0" 
+                pInputText
+              ></p-inputNumber>              
+            </div>
+            <div class="p-field col-4">
+              <label for="category" class="mb-2">Category</label>
+              <p-dropdown [options]="categories" pInputText id="category" formControlName="category" optionLabel="name" 
+              [filter]="true" [showClear]="true" filterBy="name" placeholder="Select a Category">
+            </p-dropdown>              
+            </div>
+            
+            <div class="p-field col-4">
+              <label for="image" class="mb-2">Image</label>
+              <input
+                formControlName="image"
+                id="image"
+                type="text"
+                pInputText
+              />
+            </div>
+            <div class="p-field col-12">
+              <label for="description" class="mb-2">Description</label>
+              <textarea formControlName="description" id="description" pInputTextarea [rows]="5" [cols]="30"></textarea>
+            
+            </div>
+
+            <div class="p-field col-12">
+              <label for="richDescription" class="mb-2">Rich Description</label>
+              <p-editor formControlName="richDescription" [style]="{'height':'320px'}" id="richDescription"></p-editor>             
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

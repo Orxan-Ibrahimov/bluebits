@@ -10,7 +10,7 @@ import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CategoriesService } from '@bluebits/my-products';
+import { CategoriesService, ProductsService } from '@bluebits/my-products';
 
 import {CardModule} from 'primeng/card';
 import {ToolbarModule} from 'primeng/toolbar';
@@ -20,12 +20,17 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ColorPickerModule} from 'primeng/colorpicker';
-
-
+import {InputNumberModule} from 'primeng/inputnumber';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {DropdownModule} from 'primeng/dropdown';
+import {EditorModule} from 'primeng/editor';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateCategoryComponent } from './pages/categories/create-category/create-category.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { ProductsListComponent } from './pages/products/products-list/products-list.component';
+import { CreateProductComponent } from './pages/products/create-product/create-product.component';
 
 
 const routes: Routes = [
@@ -35,13 +40,17 @@ const routes: Routes = [
     {path:'categories', component: CategoriesListComponent},
     {path:'categories/create-category', component: CreateCategoryComponent},
     {path:'categories/update/:categoryId', component: CreateCategoryComponent},
-  ]
+    {path:'products', component: ProductsListComponent},
+    {path:'products/create-product', component: CreateProductComponent},
+    {path:'products/update/:productId', component: CreateProductComponent},
+  ] 
 },
 
 ]
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, CategoriesListComponent, CreateCategoryComponent],
+  declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, 
+    CategoriesListComponent, CreateCategoryComponent, ProductsListComponent, CreateProductComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -49,9 +58,10 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,    
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
-    CardModule,ToolbarModule,ButtonModule,TableModule,InputTextModule,ToastModule,ConfirmDialogModule,ColorPickerModule,
+    CardModule,ToolbarModule,ButtonModule,TableModule,InputTextModule,ToastModule,ConfirmDialogModule,
+    ColorPickerModule,InputNumberModule,InputSwitchModule,DropdownModule,EditorModule,InputTextareaModule
   ],
-  providers: [CategoriesService,MessageService,ConfirmationService],
+  providers: [CategoriesService,ProductsService,MessageService,ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

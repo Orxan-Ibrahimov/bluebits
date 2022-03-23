@@ -75,4 +75,14 @@
   .p-fieldset {
     margin-bottom: 15px;
   }
+
+  :host ::ng-deep .p-dropdown {
+    width: 14rem;
+}
+
+.category-item-value {
+    img.flag {
+        width: 17px;
+    }
+}
 }

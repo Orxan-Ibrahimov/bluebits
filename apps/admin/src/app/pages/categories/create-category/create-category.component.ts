@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesService, Category } from '@bluebits/my-products';
 import { MessageService } from 'primeng/api';
-import { Observable, pipe, timer } from 'rxjs';
 
 @Component({
   selector: 'admin-create-category',

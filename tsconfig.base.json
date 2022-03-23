@@ -19,7 +19,8 @@
       "@bluebits/my-products": ["libs/my-products/src/index.ts"],
       "@bluebits/my-users": ["libs/my-users/src/index.ts"],
       "@bluebits/product": ["libs/product/src/index.ts"],
-      "@bluebits/ui": ["libs/ui/src/index.ts"]
+      "@bluebits/ui": ["libs/ui/src/index.ts"],
+      "@env/*": ["environments/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
