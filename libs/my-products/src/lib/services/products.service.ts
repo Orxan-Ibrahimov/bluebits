@@ -32,7 +32,7 @@ export class ProductsService {
     return this.http.put(`${this.ApiUrl}/${productId}`,product);
   }
 
-  // updateProduct(product:Product){
-  //   return this.http.put(`${this.ApiUrl}/${product.id}`,product);
-  // }
+  deleteProduct(productId:string):Observable<Product>{
+    return this.http.delete<Product>(`${this.ApiUrl}/${productId}`);
+  }
 }
