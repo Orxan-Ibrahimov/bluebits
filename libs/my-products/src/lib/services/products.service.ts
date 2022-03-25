@@ -15,4 +15,24 @@ export class ProductsService {
   getProducts():Observable<Product[]>{
     return this.http.get<Product[]>(this.ApiUrl);
   }
+
+  // addProduct(product:Product):Observable<Product>{
+  //   return this.http.post<Product>(this.ApiUrl,product);
+  // }
+
+  getProductById(productId:string):Observable<Product>{
+    return this.http.get<Product>(`${this.ApiUrl}/${productId}`);
+  }
+
+  addProduct(product:FormData):Observable<Product>{
+    return this.http.post<Product>(this.ApiUrl,product);
+  }
+
+  updateProduct(product:FormData,productId:string){
+    return this.http.put(`${this.ApiUrl}/${productId}`,product);
+  }
+
+  // updateProduct(product:Product){
+  //   return this.http.put(`${this.ApiUrl}/${product.id}`,product);
+  // }
 }

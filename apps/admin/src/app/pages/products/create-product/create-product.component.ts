@@ -1,21 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoriesService, Category } from '@bluebits/my-products';
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+  CategoriesService,
+  Category,
+  Product,
+  ProductsService,
+} from '@bluebits/my-products';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'admin-create-product',
   templateUrl: './create-product.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class CreateProductComponent implements OnInit {
-  
   form: FormGroup;
   editable = false;
-  currentCategoryId: string;
-  categories:Category[] = [];
-  constructor(private categoriesService:CategoriesService,
-    private formBuilder:FormBuilder) { }
+  myImage: string | ArrayBuffer;
+  currentProductId:string;
+  categories: Category[] = [];
+  constructor(
+    private categoriesService: CategoriesService,
+    private formBuilder: FormBuilder,
+    private productsServices: ProductsService,
+    private messageService: MessageService,
+    private router: Router,
+    private activeRoute:ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -25,21 +37,155 @@ export class CreateProductComponent implements OnInit {
       brand: ['', Validators.required],
       rating: [0, Validators.required],
       price: [0, Validators.required],
+      numReviews: [0, Validators.required],
       category: ['', Validators.required],
-      image: [''],
+      image: ['',Validators.required],
       richDescription: [''],
       isFeatured: [false],
+      id:'',
+      Images:[]
     });
-    
+
     this._getCategories();
+    this.activeRoute.params.subscribe((res) => {
+      this.currentProductId = res.productId;
+    });
+    this._checkUpdate(this.currentProductId);
   }
 
-  onSubmit(){
-    console.log('okay');    
+  _checkUpdate(productId: string) {
+    if (productId) {      
+      this.editable = true;
+      this.productsServices.getProductById(this.currentProductId).subscribe(res => {
+        this.productForm.name.setValue(res.name);
+        this.productForm.description.setValue(res.description);
+        this.productForm.richDescription.setValue(res.richDescription);
+        this.productForm.brand.setValue(res.brand);
+        this.productForm.rating.setValue(res.rating);
+        this.productForm.numReviews.setValue(res.numReviews);
+        this.productForm.countInStock.setValue(res.countInStock);
+        this.productForm.isFeatured.setValue(res.isFeatured);
+        this.productForm.price.setValue(res.price);
+        this.productForm.category.setValue(res.category);
+        this.myImage = res.image;
+        this.productForm.image.setValidators([]);
+        this.productForm.image.updateValueAndValidity();
+      });
+    } else {
+      this.editable = false;
+    }
   }
 
-  private _getCategories(){
-    this.categoriesService.getCategories().subscribe( data => {
+  onSubmit() {
+    if (this.form.valid) {
+      // const product: Product = {
+      //   name: this.productForm.name.value,
+      //   description: this.productForm.description.value,
+      //   richDescription: this.productForm.richDescription.value,
+      //   brand: this.productForm.brand.value,
+      //   numReviews: this.productForm.numReviews.value,
+      //   rating: this.productForm.rating.value,
+      //   category: this.productForm.category.value,
+      //   price: this.productForm.price.value,
+      //   isFeatured: this.productForm.isFeatured.value,
+      //   image: this.productForm.image.value,
+      //   // image: this.productForm.image.value,
+      //   countInStock: this.productForm.countInStock.value
+      // };
+     
+      const productFormData = new FormData();
+      Object.keys(this.productForm).map((key) => {
+        productFormData.append(key,this.productForm[key].value);
+      })
+
+      if (productFormData) {
+        this._addProduct(productFormData);
+      }
+      else
+      this._editProduct(productFormData);
+    }
+
+    //   if (product) {
+    //     this._addProduct(product);
+    //   }
+    //   else
+    //   this._editProduct(product);
+    // }
+
+    // const ProductFormData = new FormData();
+
+    // Object.keys(this.productForm).map(key=> {
+    //   ProductFormData.append(key,this.productForm[key].value)
+    // });
+
+    
+  }
+
+  onImageUpload(event) { 
+    const file = event.target.files[0];  
+
+    if (file) {
+      this.form.patchValue({ image: file });
+      this.form.get('image').updateValueAndValidity();
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        this.myImage = fileReader.result;
+      };
+      fileReader.readAsDataURL(file);
+    }    
+  }
+
+  private _addProduct(product: FormData) {
+    this.productsServices.addProduct(product).subscribe(
+      () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Product was created!',
+        });
+        setTimeout(() => {
+          this.router.navigate(['/products']);
+        }, 2000);
+      },
+      (err) => {
+        console.log(err);
+        
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Product was not created!',
+        });
+      }
+    );
+  }
+
+  private _editProduct(product: FormData){
+    this.productsServices.updateProduct(product,this.currentProductId).subscribe(
+      () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Prodduct was updated!',
+        });
+        setTimeout(() => {
+          this.router.navigate(['/products']);
+        }, 2000);
+      },
+      () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Prodduct was not updated!',
+        });
+      }
+    );
+  }
+
+  get productForm() {
+    return this.form.controls;
+  }
+  private _getCategories() {
+    this.categoriesService.getCategories().subscribe((data) => {
       this.categories = data;
     });
   }
