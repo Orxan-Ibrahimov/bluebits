@@ -68,6 +68,7 @@ export class CreateProductComponent implements OnInit {
         this.productForm.price.setValue(res.price);
         this.productForm.category.setValue(res.category);
         this.myImage = res.image;
+        this.productForm.image.setValue(res.image);
         this.productForm.image.setValidators([]);
         this.productForm.image.updateValueAndValidity();
       });
@@ -77,48 +78,19 @@ export class CreateProductComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      // const product: Product = {
-      //   name: this.productForm.name.value,
-      //   description: this.productForm.description.value,
-      //   richDescription: this.productForm.richDescription.value,
-      //   brand: this.productForm.brand.value,
-      //   numReviews: this.productForm.numReviews.value,
-      //   rating: this.productForm.rating.value,
-      //   category: this.productForm.category.value,
-      //   price: this.productForm.price.value,
-      //   isFeatured: this.productForm.isFeatured.value,
-      //   image: this.productForm.image.value,
-      //   // image: this.productForm.image.value,
-      //   countInStock: this.productForm.countInStock.value
-      // };
+    if (this.form.valid) {      
      
       const productFormData = new FormData();
       Object.keys(this.productForm).map((key) => {
         productFormData.append(key,this.productForm[key].value);
       })
 
-      if (productFormData) {
-        this._addProduct(productFormData);
+      if (this.editable) {
+        this._editProduct(productFormData);
       }
       else
-      this._editProduct(productFormData);
-    }
-
-    //   if (product) {
-    //     this._addProduct(product);
-    //   }
-    //   else
-    //   this._editProduct(product);
-    // }
-
-    // const ProductFormData = new FormData();
-
-    // Object.keys(this.productForm).map(key=> {
-    //   ProductFormData.append(key,this.productForm[key].value)
-    // });
-
-    
+      this._addProduct(productFormData);
+    }    
   }
 
   onImageUpload(event) { 
