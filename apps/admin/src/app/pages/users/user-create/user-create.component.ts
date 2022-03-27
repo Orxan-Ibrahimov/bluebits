@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-var */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User, UsersService } from '@bluebits/my-users';
 import { MessageService } from 'primeng/api';
+import * as countriesLib from 'i18n-iso-countries'
+
+declare const require;
+
 
 @Component({
   selector: 'admin-user-create',
@@ -10,8 +16,8 @@ import { MessageService } from 'primeng/api';
   styles: [
   ]
 })
-export class UserCreateComponent implements OnInit {
 
+export class UserCreateComponent implements OnInit {
   constructor(private formBuilder:FormBuilder,
     private usersService:UsersService,
     private messageService:MessageService,
@@ -21,11 +27,12 @@ export class UserCreateComponent implements OnInit {
   editable = false;
   form:FormGroup;
   currentUserId:string;
+  countries = [];
   
   ngOnInit(): void {
     this._initUsers();
     this._checkUpdate();
-
+this._getCountries();
   }
 
  private _initUsers(){
@@ -67,6 +74,20 @@ export class UserCreateComponent implements OnInit {
  
   }
 
+  private _getCountries(){
+     countriesLib.registerLocale(require("i18n-iso-countries/langs/en.json"));
+     this.countries = Object.entries(countriesLib.getNames("en", {select: "official"})).map(res => {
+       return {
+         id: res[0],
+         name: res[1],
+       }
+     })
+     console.log(this.countries);
+     
+    //  countriesLib.getName("US", "en");
+
+    
+  }
 private _addUser(user:User){
   this.usersService.addUser(user).subscribe(data => {
     this.messageService.add({

@@ -28,10 +28,14 @@
                     </div>        
                     <div class="p-field col-4">
                         <label for="country" class="mb-2">Country</label>
-                        <input formControlName="country" id="country" type="text" pInputText />
+                        <!-- <input formControlName="country" id="country" type="text" pInputText /> -->
+                        <p-dropdown [options]="countries" optionValue="id" pInputText id="id" formControlName="name" optionLabel="name" 
+                       [filter]="true" [showClear]="true" filterBy="name" placeholder="Select a Country">
+                      </p-dropdown>
                         <small *ngIf="userData.country.invalid && userData.country.touched" class="p-error"
                           >country is required</small
                         >
+
                     </div> 
                     <div class="p-field col-4">
                         <label for="zip" class="mb-2">zip</label>
