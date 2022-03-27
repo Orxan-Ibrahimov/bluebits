@@ -1,0 +1,72 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card header="{{editable ? 'Update' : 'Create'}}" subheader="{{editable ? 'Edit the user' : 'Add a user'}}">
+        <p-toolbar>
+            <div class="p-toolbar-group-left">
+                <p-button (onClick)="onSubmit()" label="{{editable ? 'Update the user' : 'Add a new user'}}" icon="pi pi-plus" styleClass="p-button-primary"></p-button>                   
+                <p-button routerLink="/users" label="Go Back" icon="pi pi-arrow-circle-left" styleClass="p-button-danger"></p-button>                   
+            </div>
+        </p-toolbar>
+        
+        <div class="p-grid">
+            <div class="p-col-12">
+              <form [formGroup]="form">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="p-field col-4">
+                      <label for="name" class="mb-2">Name</label>
+                      <input formControlName="name" id="name" type="text" pInputText />
+                      <small *ngIf="userData.name.invalid && userData.name.touched" class="p-error"
+                        >Name is required</small
+                      >
+                    </div>
+                    <div class="p-field col-4">
+                      <label for="email" class="mb-2">Email</label>
+                      <input formControlName="email" id="email" type="text" pInputText />
+                      <small *ngIf="userData.email.invalid && userData.email.touched" class="p-error"
+                        >email is required</small
+                      >
+                    </div>        
+                    <div class="p-field col-4">
+                        <label for="country" class="mb-2">Country</label>
+                        <input formControlName="country" id="country" type="text" pInputText />
+                        <small *ngIf="userData.country.invalid && userData.country.touched" class="p-error"
+                          >country is required</small
+                        >
+                    </div> 
+                    <div class="p-field col-4">
+                        <label for="zip" class="mb-2">zip</label>
+                        <input formControlName="zip" id="zip" type="text" pInputText />                        
+                    </div>  
+                    <div class="p-field col-4">
+                        <label for="phone" class="mb-2">phone</label>
+                        <input formControlName="phone" id="phone" type="text" pInputText />     
+                        <small *ngIf="userData.phone.invalid && userData.phone.touched" class="p-error"
+                        >phone is required</small
+                      >                   
+                    </div>  
+                    <div class="p-field col-4">
+                        <label for="apartment" class="mb-2">Apartment</label>
+                        <input formControlName="apartment" id="apartment" type="text" pInputText />                        
+                    </div>  
+                    <div class="p-field col-4">
+                        <label for="city" class="mb-2">city</label>
+                        <input formControlName="city" id="city" type="text" pInputText />                        
+                    </div>    
+                    <div class="p-field col-4">
+                        <label for="isAdmin" class="mb-2">is Admin</label>
+                        <p-inputSwitch  formControlName="isAdmin" id="isAdmin" pInputText></p-inputSwitch>                       
+                    </div>    
+                    <div class="p-field col-4">
+                        <label for="street" class="mb-2">Street</label>
+                        <input formControlName="street" id="street" type="text" pInputText />                        
+                    </div>    
+                    <div class="p-field col-4">
+                        <label for="passwordHash" class="mb-2">Password</label>
+                        <input formControlName="passwordHash" id="passwordHash" type="text" pInputText />                        
+                    </div>                                                        
+                  </div>
+              </form>
+            </div>
+        </div>
+    </p-card>
+</div>

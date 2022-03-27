@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {
   CategoriesService,
   Category,
-  Product,
   ProductsService,
 } from '@bluebits/my-products';
 import { MessageService } from 'primeng/api';
@@ -78,7 +77,7 @@ export class CreateProductComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.valid) {      
+    if (this.form.valid) {     
      
       const productFormData = new FormData();
       Object.keys(this.productForm).map((key) => {
