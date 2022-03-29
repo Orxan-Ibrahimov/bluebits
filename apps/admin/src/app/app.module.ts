@@ -34,6 +34,7 @@ import { ProductsListComponent } from './pages/products/products-list/products-l
 import { CreateProductComponent } from './pages/products/create-product/create-product.component';
 import { UserListComponent } from './pages/users/user-list/user-list.component';
 import { UserCreateComponent } from './pages/users/user-create/user-create.component';
+import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
 
 
 const routes: Routes = [
@@ -49,6 +50,7 @@ const routes: Routes = [
     {path:'users', component: UserListComponent},
     {path:'users/create-user', component: UserCreateComponent},
     {path:'users/update/:userId', component: UserCreateComponent},
+    {path:'orders', component: OrdersListComponent}
   ] 
 },
 
@@ -56,7 +58,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, 
-    CategoriesListComponent, CreateCategoryComponent, ProductsListComponent, CreateProductComponent, UserListComponent, UserCreateComponent],
+    CategoriesListComponent, CreateCategoryComponent, ProductsListComponent, CreateProductComponent, UserListComponent, UserCreateComponent, OrdersListComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
