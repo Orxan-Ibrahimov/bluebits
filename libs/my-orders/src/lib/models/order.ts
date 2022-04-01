@@ -2,7 +2,7 @@ import { User } from "@bluebits/my-users";
 import { OrderItem } from "./order-item";
 
 export interface Order{
-    id:string,
+    id?:string,
     city:string,
     zip:string,
     country:string,

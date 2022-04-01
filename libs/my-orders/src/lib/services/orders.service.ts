@@ -19,4 +19,8 @@ export class OrdersService {
   GetOrderById(orderId:string):Observable<Order>{
     return this.http.get<Order>(`${this.ApiUrl}/${orderId}`);
   }
+
+  UpdateStatus(orderStatus:{status:string},orderId:string):Observable<Order>{
+    return this.http.put<Order>(`${this.ApiUrl}/${orderId}`,orderStatus);
+  }
 }
