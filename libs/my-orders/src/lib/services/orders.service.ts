@@ -16,4 +16,7 @@ export class OrdersService {
   GetOrders():Observable<Order[]>{
     return this.http.get<Order[]>(this.ApiUrl);
   }
+  GetOrderById(orderId:string):Observable<Order>{
+    return this.http.get<Order>(`${this.ApiUrl}/${orderId}`);
+  }
 }

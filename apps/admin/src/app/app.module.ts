@@ -26,6 +26,8 @@ import {DropdownModule} from 'primeng/dropdown';
 import {EditorModule} from 'primeng/editor';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import { TagModule } from 'primeng/tag';
+import {FieldsetModule} from 'primeng/fieldset';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateCategoryComponent } from './pages/categories/create-category/create-category.component';
@@ -35,6 +37,7 @@ import { CreateProductComponent } from './pages/products/create-product/create-p
 import { UserListComponent } from './pages/users/user-list/user-list.component';
 import { UserCreateComponent } from './pages/users/user-create/user-create.component';
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
+import { OrderDetailsComponent } from './pages/orders/order-details/order-details.component';
 
 
 const routes: Routes = [
@@ -50,7 +53,8 @@ const routes: Routes = [
     {path:'users', component: UserListComponent},
     {path:'users/create-user', component: UserCreateComponent},
     {path:'users/update/:userId', component: UserCreateComponent},
-    {path:'orders', component: OrdersListComponent}
+    {path:'orders', component: OrdersListComponent},
+    {path:'orders/:orderId', component: OrderDetailsComponent},
   ] 
 },
 
@@ -58,7 +62,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent, DashboardComponent, ShellComponent, SidebarComponent, 
-    CategoriesListComponent, CreateCategoryComponent, ProductsListComponent, CreateProductComponent, UserListComponent, UserCreateComponent, OrdersListComponent],
+    CategoriesListComponent, CreateCategoryComponent, ProductsListComponent, CreateProductComponent, UserListComponent, UserCreateComponent, OrdersListComponent,OrderDetailsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -68,7 +72,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
     CardModule,ToolbarModule,ButtonModule,TableModule,InputTextModule,ToastModule,ConfirmDialogModule,
     ColorPickerModule,InputNumberModule,InputSwitchModule,DropdownModule,EditorModule,InputTextareaModule,
-    TagModule,
+    TagModule,FieldsetModule,
   ],
   providers: [CategoriesService,ProductsService,MessageService,ConfirmationService],
   bootstrap: [AppComponent],
