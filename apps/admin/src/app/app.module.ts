@@ -38,6 +38,7 @@ import { UserListComponent } from './pages/users/user-list/user-list.component';
 import { UserCreateComponent } from './pages/users/user-create/user-create.component';
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
 import { OrderDetailsComponent } from './pages/orders/order-details/order-details.component';
+import { UsersModule } from '@bluebits/my-users';
 
 
 const routes: Routes = [
@@ -68,6 +69,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    UsersModule,
     ReactiveFormsModule,    
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
     CardModule,ToolbarModule,ButtonModule,TableModule,InputTextModule,ToastModule,ConfirmDialogModule,
@@ -77,4 +79,5 @@ const routes: Routes = [
   providers: [CategoriesService,ProductsService,MessageService,ConfirmationService],
   bootstrap: [AppComponent],
 })
+
 export class AppModule {}
