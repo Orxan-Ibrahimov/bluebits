@@ -3,8 +3,10 @@ import { HttpResponse } from '@angular/common/http';
 import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { AuthService } from '../../services/auth.service';
+import { LocaleStorageService } from '../../services/locale-storage.service';
 
 @Component({
   selector: 'admin-auth',
@@ -18,7 +20,9 @@ export class AuthComponent implements OnInit {
   authMessage = 'Email or Password are wrong';
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router:Router,
+    private tokenStorage:LocaleStorageService
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +48,8 @@ export class AuthComponent implements OnInit {
       .subscribe(
         (response: User) => {
           console.log(response.token);
+          this.tokenStorage.setItem(response.token);
+          this.router.navigateByUrl('/');
         },
         (err) => {
           this.authError = true;

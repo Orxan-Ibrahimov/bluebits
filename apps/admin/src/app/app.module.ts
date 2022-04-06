@@ -9,7 +9,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShellComponent } from './shared/shell/shell.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { CategoriesListComponent } from './pages/categories/categories-list/categories-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CategoriesService, ProductsService } from '@bluebits/my-products';
 
 import {CardModule} from 'primeng/card';
@@ -38,11 +38,11 @@ import { UserListComponent } from './pages/users/user-list/user-list.component';
 import { UserCreateComponent } from './pages/users/user-create/user-create.component';
 import { OrdersListComponent } from './pages/orders/orders-list/orders-list.component';
 import { OrderDetailsComponent } from './pages/orders/order-details/order-details.component';
-import { UsersModule } from '@bluebits/my-users';
+import { AuthGuardService, JwtInterceptor, UsersModule } from '@bluebits/my-users';
 
 
 const routes: Routes = [
-  {path:'', component: ShellComponent,
+  {path:'', component: ShellComponent, canActivate:[AuthGuardService],
   children: [
     {path:'dashboard', component: DashboardComponent},
     {path:'categories', component: CategoriesListComponent},
@@ -76,7 +76,9 @@ const routes: Routes = [
     ColorPickerModule,InputNumberModule,InputSwitchModule,DropdownModule,EditorModule,InputTextareaModule,
     TagModule,FieldsetModule,
   ],
-  providers: [CategoriesService,ProductsService,MessageService,ConfirmationService],
+  providers: [CategoriesService,ProductsService,MessageService,ConfirmationService,
+  {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+],
   bootstrap: [AppComponent],
 })
 
