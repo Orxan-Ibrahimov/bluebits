@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HttpResponse } from '@angular/common/http';
-import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -51,7 +49,7 @@ export class AuthComponent implements OnInit {
           this.tokenStorage.setItem(response.token);
           this.router.navigateByUrl('/');
         },
-        (err) => {
+        () => {
           this.authError = true;
           this.authMessage = 'error occurs in tte server';
         }
