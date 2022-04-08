@@ -16,9 +16,9 @@ export class ProductsService {
     return this.http.get<Product[]>(this.ApiUrl);
   }
 
-  // addProduct(product:Product):Observable<Product>{
-  //   return this.http.post<Product>(this.ApiUrl,product);
-  // }
+  getProductsCount():Observable<{productCount:number}>{
+    return this.http.get<{productCount:number}>(`${this.ApiUrl}/get/count`);
+  }
 
   getProductById(productId:string):Observable<Product>{
     return this.http.get<Product>(`${this.ApiUrl}/${productId}`);

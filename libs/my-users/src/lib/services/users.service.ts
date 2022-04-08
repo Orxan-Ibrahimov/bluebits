@@ -17,6 +17,10 @@ export class UsersService {
     return this.http.get<User[]>(this.ApiUrl);
   }
 
+  getUsersCount():Observable<{userCount:number}>{
+    return this.http.get<{userCount:number}>(`${this.ApiUrl}/get/count`);
+  }
+
   getUserById(userId:string):Observable<User>{
     return this.http.get<User>(`${this.ApiUrl}/${userId}`);
   }
