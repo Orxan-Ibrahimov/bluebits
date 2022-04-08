@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Order } from '../models/order';
 
 @Injectable({
@@ -17,12 +18,12 @@ export class OrdersService {
     return this.http.get<Order[]>(this.ApiUrl);
   }
 
-  getOrdersSales():Observable<{sales:number}>{
-    return this.http.get<{sales:number}>(`${this.ApiUrl}/get/totalSales`);
+  getOrdersSales():Observable<number>{
+    return this.http.get<number>(`${this.ApiUrl}/get/totalSales`).pipe(map((value:any) => value.totalSales));
   }
 
-  getOrdersCount():Observable<{orderCount:number}>{
-    return this.http.get<{orderCount:number}>(`${this.ApiUrl}/get/count`);
+  getOrdersCount():Observable<number>{
+    return this.http.get<number>(`${this.ApiUrl}/get/count`).pipe(map((value:any) => value.orderCount));
   }
 
 
