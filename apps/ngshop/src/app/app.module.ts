@@ -7,25 +7,32 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { UIModule } from '@bluebits/ui';
 import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
 import { ProductModule } from '@bluebits/my-products';
+import { UiModule } from '@bluebits/ui';
 
 const routes: Routes = [
-  {path: '', component: HomePageComponent},
-  {path: 'products', component: ProductListComponent},
-]
+  { path: '', component: HomePageComponent },
+  { path: 'products', component: ProductListComponent },
+];
 
 @NgModule({
-  
-  declarations: [AppComponent, HomePageComponent, ProductListComponent, HeaderComponent, FooterComponent, NavMenuComponent],
-  imports: [BrowserModule,
+  declarations: [
+    AppComponent,
+    HomePageComponent,
+    ProductListComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavMenuComponent,
+  ],
+  imports: [
+    BrowserModule,
     ProductModule,
-    RouterModule.forRoot(routes),UIModule],
+    UiModule,
+    RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [
-    NavMenuComponent
-  ],
+  exports: [NavMenuComponent],
 })
 export class AppModule {}

@@ -1,0 +1,47 @@
+.banner {
+  height: 280px;
+  width: 100%;
+  border-radius: 15px;
+  background-color: var(--blue-100);
+  margin-top: 50px;
+
+  &-text {
+    color: var(--surface-600);
+    margin-top: 50px;
+
+    h1 {
+      margin: 0;
+      font-size: 3em;
+      font-weight: 400;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 2em;
+      font-weight: 300;
+    }
+  }
+
+  &-image {
+    text-align: right;
+    padding-top: 15px;
+    padding-right: 50px;
+  }
+
+  &-buton{
+      background-color: var(--surface-0);
+      color: $primary-color;
+      border-radius: 15px;
+      height: 50px;
+      border: 0;
+
+      &:enabled:hover{
+        background-color: var(--surface-0);
+        color: $primary-color;
+      }
+
+      &:focus{
+       box-shadow: none;
+      }
+  }
+}
