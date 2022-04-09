@@ -15,7 +15,6 @@ export class AuthGuardService implements CanActivate {
   
     if(token)  {
       const tokenData = JSON.parse(atob(token));
-      console.log(Math.floor(new Date().getTime() / 1000));
       
       if(tokenData.isAdmin && this._getTokenExp(tokenData.exp))
       return true

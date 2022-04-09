@@ -45,7 +45,6 @@ export class AuthComponent implements OnInit {
       )
       .subscribe(
         (response: User) => {
-          console.log(response.token);
           this.tokenStorage.setItem(response.token);
           this.router.navigateByUrl('/');
         },

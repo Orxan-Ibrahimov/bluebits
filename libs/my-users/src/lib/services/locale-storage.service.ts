@@ -10,11 +10,7 @@ export class LocaleStorageService {
   tokenName = 'token';
 
   getItem() {
-   if(localStorage.getItem(this.tokenName))
-   {
-     return localStorage.getItem(this.tokenName);
-   }
-   return ""
+    return localStorage.getItem(this.tokenName);
   }
 
   setItem(token: string) {
