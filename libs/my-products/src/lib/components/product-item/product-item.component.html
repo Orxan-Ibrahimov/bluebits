@@ -1,0 +1,17 @@
+<div class="product-item">
+  <div class="product-item-wrapper">
+    <img [src]="product.image" alt="product" />
+    <div class="product-item-info">
+      <h2 class="name">{{ product.name }}</h2>
+      <p class="price">{{ product.price | currency }}</p>
+      <button
+        pButton
+        pRipple
+        type="button"
+        icon="pi pi-shopping-cart"
+        label="Add to cart"
+        class="p-button-rounded product-item-buton"
+      ></button>
+    </div>
+  </div>
+</div>

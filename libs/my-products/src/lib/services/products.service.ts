@@ -17,6 +17,10 @@ export class ProductsService {
     return this.http.get<Product[]>(this.ApiUrl);
   }
 
+  getFeaturedProducts():Observable<Product[]>{
+    return this.http.get<Product[]>(`${this.ApiUrl}/get/featured`);
+  }
+
   getProductsCount():Observable<number>{
     return this.http.get<number>(`${this.ApiUrl}/get/count`).pipe(map((value:any) => value.productCount));
   }

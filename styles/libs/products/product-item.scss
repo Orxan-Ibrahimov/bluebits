@@ -1,0 +1,40 @@
+.product-item {
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 250px;
+    background-color: var(--surface-200);
+    border: 1px solid var(--surface-300);
+    border-radius: 16px;
+    margin-top: 85px;
+
+    img {
+        margin-top: -85px;
+        height: 150px;
+        width: 60%;
+    }
+
+    .name{
+        margin: 10px 0;
+    }
+
+    .price{
+        margin: 0;
+        font-size: 1.3em;
+        color: $primary-color;
+    }
+  }
+
+  &-buton {
+      background-color: $primary-color;
+      border: 0;
+      border-radius: 16px;
+      margin: 16px 0;
+  }
+
+  &-info {
+    text-align: center;
+}
+}
