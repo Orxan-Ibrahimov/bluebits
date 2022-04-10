@@ -4,11 +4,12 @@ import { ProductSearchComponent } from './components/product-search/product-sear
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductCategoriesBannerComponent } from './components/product-categories-banner/product-categories-banner.component';
 
 // const routes: Routes = [{ path: 'prod', component: ProductSearchComponent }];
 
 @NgModule({
-  declarations: [ProductSearchComponent],
+  declarations: [ProductSearchComponent, ProductCategoriesBannerComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -16,6 +17,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
   ],
-  exports: [ProductSearchComponent]
+  exports: [ProductSearchComponent, ProductCategoriesBannerComponent]
 })
 export class ProductModule { }
