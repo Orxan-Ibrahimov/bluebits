@@ -1,0 +1,36 @@
+import { Component, OnInit } from '@angular/core';
+import { Category } from '../../models/category';
+import { Product } from '../../models/product';
+import { CategoriesService } from '../../services/categories.service';
+import { ProductsService } from '../../services/products.service';
+
+
+
+@Component({
+  selector: 'product-list',
+  templateUrl: './products-list.component.html',
+  styles: [
+  ]
+})
+export class ProductsListComponent implements OnInit {
+  products:Product[] = [];
+  categories:Category[] = [];
+
+  constructor(private productsService:ProductsService, private categoryService:CategoriesService) { }
+
+  ngOnInit(): void {
+    this._getProducts();
+    this._getCategories();
+  }
+  private _getCategories() {
+    this.categoryService.getCategories().subscribe((response:Category[]) => {
+      this.categories = response;
+    });
+    }
+
+  private _getProducts(){
+    this.productsService.getProducts().subscribe((datas:Product[]) => {
+      this.products = datas;
+    });
+  }
+}

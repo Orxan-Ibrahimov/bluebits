@@ -17,7 +17,6 @@ export class ProductCategoriesBannerComponent implements OnInit {
   ngOnInit(): void {
     this.categoriesService.getCategories().subscribe(datas => {
       this.categories = datas;
-      console.log(this.categories);      
     });
   }
 
