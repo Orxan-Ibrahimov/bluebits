@@ -28,9 +28,16 @@ export class ProductsListComponent implements OnInit {
     });
     }
 
-  private _getProducts(){
-    this.productsService.getProducts().subscribe((datas:Product[]) => {
-      this.products = datas;
+  private _getProducts(categories?:string[]){
+    this.productsService.getProducts(categories).subscribe((datas:Product[]) => {
+      this.products = datas;     
     });
+  }
+
+  CategoryFilter(){
+    const selectedSategories = this.categories.filter((category) => category.checked).map((response) => {
+      return response.id;
+    });
+    this._getProducts(selectedSategories);
   }
 }
