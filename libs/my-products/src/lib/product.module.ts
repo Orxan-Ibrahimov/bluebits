@@ -12,7 +12,10 @@ import { ProductsListComponent } from './pages/products-list/products-list.compo
 import { RouterModule, Routes } from '@angular/router';
 import {CheckboxModule} from 'primeng/checkbox';
 
-const routes: Routes = [{ path: 'products', component: ProductsListComponent }];
+const routes: Routes = [
+  { path: 'products', component: ProductsListComponent },
+  { path: 'category/:categoryId', component: ProductsListComponent },
+];
 
 @NgModule({
   declarations: [ProductSearchComponent, ProductCategoriesBannerComponent, FeaturedProductsComponent, ProductItemComponent, ProductsListComponent],
