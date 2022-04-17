@@ -4,14 +4,15 @@
     <div class="product-item-info">
       <h2 class="name">{{ product.name }}</h2>
       <p class="price">{{ product.price | currency }}</p>
-      <button
+      <a
         pButton
         pRipple
         type="button"
         icon="pi pi-shopping-cart"
         label="Add to cart"
         class="p-button-rounded product-item-buton"
-      ></button>
+        [routerLink]="'/products/' + product.id"
+      ></a>
     </div>
   </div>
 </div>

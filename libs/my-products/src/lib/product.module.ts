@@ -11,14 +11,20 @@ import {ButtonModule} from 'primeng/button';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import {CheckboxModule} from 'primeng/checkbox';
+import { ProductsDetailComponent } from './pages/products-detail/products-detail.component';
+
+import {RatingModule} from 'primeng/rating';
+import {InputNumberModule} from 'primeng/inputnumber';
+
 
 const routes: Routes = [
-  { path: 'products', component: ProductsListComponent },
+  { path: 'products', component: ProductsListComponent},
   { path: 'category/:categoryId', component: ProductsListComponent },
+  {path: 'products/:productId', component: ProductsDetailComponent}
 ];
 
 @NgModule({
-  declarations: [ProductSearchComponent, ProductCategoriesBannerComponent, FeaturedProductsComponent, ProductItemComponent, ProductsListComponent],
+  declarations: [ProductSearchComponent, ProductCategoriesBannerComponent, FeaturedProductsComponent, ProductItemComponent, ProductsListComponent, ProductsDetailComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -28,7 +34,9 @@ const routes: Routes = [
     CheckboxModule,
     ButtonModule,
     ReactiveFormsModule,
+    InputNumberModule,
+    RatingModule,
   ],
-  exports: [ProductSearchComponent, ProductCategoriesBannerComponent, FeaturedProductsComponent, ProductItemComponent, ProductsListComponent]
+  exports: [ProductSearchComponent, ProductCategoriesBannerComponent, FeaturedProductsComponent, ProductItemComponent, ProductsListComponent, ProductsDetailComponent]
 })
 export class ProductModule { }
