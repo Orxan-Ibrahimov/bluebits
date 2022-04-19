@@ -4,9 +4,11 @@
   "include": [],
   "references": [
     {
-      "path": "./tsconfig.lib.json"
+      "path": "./tsconfig.lib.json",
+      "composite": true
     },
     {
+      "composite": true,
       "path": "./tsconfig.spec.json"
     }
   ],

@@ -15,6 +15,7 @@ import { ProductsDetailComponent } from './pages/products-detail/products-detail
 
 import {RatingModule} from 'primeng/rating';
 import {InputNumberModule} from 'primeng/inputnumber';
+import { UiModule } from '@bluebits/ui';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forChild(routes),
     FormsModule,
+    UiModule,
     CheckboxModule,
     ButtonModule,
     ReactiveFormsModule,
