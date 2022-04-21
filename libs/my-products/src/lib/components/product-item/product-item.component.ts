@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CartItem, CartService } from '@bluebits/my-orders';
 import { Product } from '../../models/product';
 
 @Component({
@@ -9,11 +10,18 @@ import { Product } from '../../models/product';
 })
 export class ProductItemComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cartService:CartService) { }
 
   @Input() product : Product;
 
   ngOnInit(): void {
   }
 
+  AddToCart(){
+    const catItem:CartItem = {
+      items: [this.product.id],
+      quantity:1
+    }
+    this.cartService.setProduct(catItem);
+  }
 }

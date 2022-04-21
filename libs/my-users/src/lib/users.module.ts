@@ -6,12 +6,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
 import {ButtonModule} from 'primeng/button';
-import { UiGalleryComponent } from './components/ui-gallery/ui-gallery.component';
+// import { UiGalleryComponent } from './components/ui-gallery/ui-gallery.component';
 
 const routes: Routes = [{ path: 'login', component: AuthComponent }];
 
 @NgModule({
-  declarations: [AuthComponent, UiGalleryComponent],
+  declarations: [AuthComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -21,8 +21,8 @@ const routes: Routes = [{ path: 'login', component: AuthComponent }];
     ButtonModule,    
     RouterModule.forChild(routes),
   ],
-  exports: [
-    UiGalleryComponent
-  ],
+  // exports: [
+  //   UiGalleryComponent
+  // ],
 })
 export class UsersModule {}

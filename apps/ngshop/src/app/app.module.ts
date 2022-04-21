@@ -10,6 +10,7 @@ import { NavMenuComponent } from './shared/nav-menu/nav-menu.component';
 import { ProductModule } from '@bluebits/my-products';
 import { UiModule } from '@bluebits/ui';
 import { HttpClientModule } from '@angular/common/http';
+import { OrderModule } from '@bluebits/my-orders';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
     ProductModule,
     HttpClientModule,
     UiModule,
+    OrderModule,
     RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' }),
   ],
   providers: [],

@@ -11,7 +11,8 @@
         icon="pi pi-shopping-cart"
         label="Add to cart"
         class="p-button-rounded product-item-buton"
-        [routerLink]="'/products/' + product.id"
+        
+        (click)="AddToCart()"
       ></a>
     </div>
   </div>
