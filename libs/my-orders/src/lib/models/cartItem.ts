@@ -1,4 +1,4 @@
 export interface CartItem{
-    items?:string[],
+    productId?:string,
     quantity?:number
 }

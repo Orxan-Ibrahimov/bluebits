@@ -32,14 +32,19 @@ export class CartService {
 
   setProduct(cartItem: CartItem): Cart {
     const cart = this.getCart();
-    cart.cartItems.push(cartItem);
+   
+    if (cart.cartItems.find(item => item.productId === cartItem.productId)) {
+      cart.cartItems.map((data) => {
+        if(data.productId === cartItem.productId)
+        data.quantity = data.quantity + cartItem.quantity;
+
+        return data;
+      });
+    } else {
+      cart.cartItems.push(cartItem);
+    }
+    
     localStorage.setItem(this.CART_KEY, JSON.stringify(cart));
     return cart;
-    // if (cart) {
-    //   cart = cart.cartItems.map((cartItem) => {
-    //     return
-    //   });
-    // } else {
-    // }
   }
 }
